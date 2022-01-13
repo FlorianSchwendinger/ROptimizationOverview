@@ -1,0 +1,111 @@
+---
+title: Optimization Taxonomy
+version: "`rSys.Date()`"
+output:
+    rmarkdown::html_document:
+        number_sections: true
+        html_preview: true
+        theme: "paper"
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Modeling Packages
+
+
+# Infrastructure Packages
+
+
+# Optimization Solvers
+
+
+## Mathematical Programming Solvers 
+
+
+## General Purpose Solvers
+
+
+This is an experiment on a new take on the CRAN Optimization Task View.
+
+## Taxonomy
+There exist different taxonomies for optimization one of the most 
+rigorous taxonomy can be found at the NEOS homepage.
+
+
+```{r}
+library("data.tree")
+library("treemap")
+pathString_root <- c(
+    "Optimization",
+    "Optimization/Uncertainty",
+    "Optimization/Uncertainty/Stochastic Programming",
+    "Optimization/Uncertainty/Robust Optimization",
+    "Optimization/Deterministic",
+    "Optimization/Deterministic/Continuous",
+    "Optimization/Deterministic/Continuous/Unconstrained",
+    "Optimization/Deterministic/Continuous/Constrained",
+    "Optimization/Deterministic/Discrete",
+    "Optimization/Deterministic/Discrete/Integer Programming",
+    "Optimization/Deterministic/Discrete/Combinatorial Optimization",
+    "Optimization/Multiobjective Optimization"
+)
+opti <- as.Node(data.frame(pathString = pathString_root))
+plot(opti)
+```
+
+
+```{r}
+pathString_unconstrained <- c(
+    "Unconstrained",
+    "Unconstrained/Nonlinear Least Squares",
+    "Unconstrained/Nonlinear Equations",
+    "Unconstrained/Nondifferentiable Optimization",
+    "Unconstrained/Global Optimization"
+)
+opti <- as.Node(data.frame(pathString = pathString_unconstrained))
+plot(opti)
+```
+
+
+```{r}
+pathString_constrained <- c(
+    "Constrained",
+    "Constrained/Nondifferentiable Optimization",
+    "Constrained/Global Optimization",
+    "Constrained/Nonlinear Programming",
+    "Constrained/Nonlinear Programming/Semidefinite Programming",
+    "Constrained/Nonlinear Programming/Semidefinite Programming/Second-Order Cone Programming",
+    "Constrained/Nonlinear Programming/Semidefinite Programming/Second-Order Cone Programming/Quadratically Constrained Quadratic Programming",
+    "Constrained/Nonlinear Programming/Semiinfinite Programming",
+    "Constrained/Nonlinear Programming/Mathematical Programs with Equilibrium Constraints",
+    "Constrained/Nonlinear Programming/Mathematical Programs with Equilibrium Constraints/Complementarity Problems",
+    "Constrained/Nonlinear Programming/Mixed Integer Nonlinear Programming",
+    "Constrained/Network Optimization",
+    "Constrained/Bound Constrained",
+    "Constrained/Linearly Constrained"
+)
+opti <- as.Node(data.frame(pathString = pathString_constrained))
+plot(opti)
+```
+
+
+```{r}
+pathString_opt <- c(
+    "Optimization",
+    "Optimization/Fixed Functional Form",
+    "Optimization/Free Functional Form",
+    "Optimization/Free Functional Form/Unconstrained",
+    "Optimization/Free Functional Form/Constrained",
+    "Optimization/Free Functional Form/Constrained/Bound Constrained",
+    "Optimization/Free Functional Form/Constrained/Linearly Constrained",
+    "Optimization/Free Functional Form/Constrained/Linearly Constrained"
+)
+opti <- as.Node(data.frame(pathString = pathString_opt))
+plot(opti)
+```

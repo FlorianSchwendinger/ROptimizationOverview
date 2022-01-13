@@ -1,0 +1,99 @@
+---
+title: Optimization
+subtitle: Optimization and Mathematical Programming
+version: "`rSys.Date()`"
+output:
+    rmarkdown::html_document:
+        number_sections: true
+        html_preview: true
+        theme: "paper"
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Modeling Packages
+- [**CVXR**](https://cran.r-project.org/package=CVXR)
+- [**ompr**](https://cran.r-project.org/package=ompr)
+- [**ROI**](https://cran.r-project.org/package=ROI)
+
+
+
+# Infrastructure Packages
+- [**optimx**](https://cran.r-project.org/package=optimx)
+- [**ROI**](https://cran.r-project.org/package=ROI)
+
+
+# Optimization Solvers
+
+
+## Mathematical Programming Solvers 
+```{r, cache = TRUE, echo = FALSE}
+rpkgs <- available.packages()
+```
+
+
+```{r, echo = FALSE}
+library("DT")
+os <- read.csv("mathematical_programming_solvers.csv", check.names = FALSE)
+for (i in which(sapply(os, class) == "integer")) {
+    b <- as.logical(os[, i])
+    os[which(b), i] <- "x"
+    os[which(!b), i] <- "  "
+    os[is.na(b), i] <- "  "
+    os[, i] <- as.factor(os[, i])
+}
+k <- match(os[["Package"]], rpkgs[, "Package"])
+os_pkgs <- rpkgs[k, "Package"]
+license <- os[["License"]]
+b <- !is.na(k) & nchar(license) == 0L
+license[b] <- rpkgs[k, "License"][b]
+license <- gsub("Apache License 2.0.*", "Apache", license)
+license <- gsub("GPL(-| ).*", "GPL", license)
+license <- gsub("CPL(-| ).*", "CPL", license)
+os[["License"]] <- as.factor(license)
+b <- !is.na(os_pkgs)
+template <- '<a href="https://cran.r-project.org/package=%s">%s</a>'
+os[["Package"]][b] <- sprintf(template, os_pkgs[b], os_pkgs[b])
+template <- '<a href="%s">%s</a>'
+os[["Package"]][!b] <- sprintf(template, os[["url"]][!b], os[["Package"]][!b])
+os[["url"]] <- NULL
+cn2 <- c("Id", gsub(".*_", "", colnames(os)))
+
+sketch <- htmltools::withTags(table(
+  class = 'display',
+  thead(
+    tr(th(colspan = 2, '', style = "border: solid 1px;"),
+       th(colspan = 3, 'Objective', style = "border: solid 1px;"),
+       th(colspan = 7, 'Constraints', style = "border: solid 1px;"),
+       th(colspan = 3, 'Types', style = "border: solid 1px;"),
+       th(colspan = 4, '', style = "border-right: solid 1px;")
+    ),
+    tr(lapply(cn2, function(x) th(x, style = "border: solid 1px;")))
+  )
+))
+
+
+dtab_opts <- list(pageLength = 32, autoWidth = TRUE,
+    columnDefs = list(list(className = 'dt-center', targets = seq(2, NCOL(os)))))
+dt <- datatable(os, filter = 'top', escape = FALSE, options = dtab_opts, 
+                container = sketch)
+formatStyle(dt, seq(0, NCOL(os)), border = "dotted 1px")
+```
+
+
+## General Purpose Solvers
+
+
+
+# Benchmark Collections
+
+
+# Benchmark - Results
+
+

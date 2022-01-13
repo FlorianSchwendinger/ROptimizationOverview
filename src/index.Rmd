@@ -1,0 +1,49 @@
+---
+title: "Overview"
+output: html_document
+---
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+
+
+In this pages I experiment with different takes on providing guidance on the 
+fast amount of **R** optimization packages.
+
+
+# Modeling Packages
+- [**CVXR**](https://cran.r-project.org/package=CVXR) 
+- [**ompr**](https://cran.r-project.org/package=ompr)
+- [**ROI**](https://cran.r-project.org/package=ROI)
+
+
+
+# Infrastructure Packages
+- [**optimx**](https://cran.r-project.org/package=optimx)
+- [**ROI**](https://cran.r-project.org/package=ROI)
+
+
+# Optimization Packages
+
+## Mathematical Programming Packages
+- [Overview table](Mathematical_Programming.html)
+
+## General Purpose Packages
+- TODO
+
+# Benchmark Collections
+- TODO
+
+# Benchmark - Results
+- TODO
